@@ -1,0 +1,685 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: george;
+  src: url("George X.8731111e.otf") format("opentype");
+}
+
+@font-face {
+  font-family: sussie;
+  src: url("SuisseBPIntl-UltraLight.a1f7c1d8.otf") format("opentype");
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+html {
+  background: #000;
+}
+
+body {
+  color: var(--color-text);
+  background-color: #000;
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.demo-1 {
+  --color-text: #fff;
+  --color-bg: #000;
+  --color-link: #8fe8ff;
+  --color-link-hover: #fff;
+  --color-info: #72af3a;
+  --color-nav: #fff;
+}
+
+.demo-2 {
+  --color-text: #fff;
+  --color-bg: #000;
+  --color-link: #9cf9db;
+  --color-link-hover: #fff;
+  --color-info: #f3a145;
+  --color-nav: #fff;
+}
+
+.demo-3 {
+  --color-text: #fff;
+  --color-bg: #a9b1b7;
+  --color-link: #201b18;
+  --color-link-hover: #224d94;
+  --color-info: #fff473;
+  --color-nav: #fff;
+}
+
+.demo-4 {
+  --color-text: #81838c;
+  --color-bg: #000;
+  --color-link: #96e23e;
+  --color-link-hover: #fff;
+  --color-info: #ea7836;
+  --color-nav: #fff;
+}
+
+.demo-5 {
+  --color-text: #fff;
+  --color-bg: #000;
+  --color-link: #fff;
+  --color-link-hover: #2a3cbb;
+  --color-info: #f7fb40;
+  --color-nav: #fff;
+}
+
+.js body {
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.js body.render {
+  opacity: 1;
+}
+
+.js .loading:before {
+  content: "";
+  z-index: 100000;
+  background: var(--color-bg);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.js .loading:after {
+  content: "";
+  z-index: 100000;
+  pointer-events: none;
+  opacity: .4;
+  background: var(--color-link);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  animation: .7s linear infinite alternate forwards loaderAnim;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes loaderAnim {
+  to {
+    opacity: 1;
+    transform: scale3d(.5, .5, 1);
+  }
+}
+
+a {
+  color: var(--color-link);
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: var(--color-link-hover);
+  outline: none;
+}
+
+.hidden {
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.message {
+  background: var(--color-text);
+  color: var(--color-bg);
+  text-align: center;
+  z-index: 100;
+  padding: 1em;
+  display: none;
+  position: relative;
+}
+
+.icon {
+  fill: currentColor;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 auto;
+  display: block;
+}
+
+main {
+  width: 100%;
+  position: relative;
+}
+
+.content {
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+}
+
+.content--fixed {
+  z-index: 10000;
+  pointer-events: none;
+  grid-template: "header ."
+                 ". ."
+                 "github demos" 4em
+                 / 50% 50%;
+  align-content: space-between;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  padding: 1.5em;
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.content--fixed a {
+  pointer-events: auto;
+}
+
+.codrops-header {
+  z-index: 100;
+  flex-direction: row;
+  grid-area: header;
+  place-self: start;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.codrops-header__title {
+  margin: 0;
+  padding: .75em 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.info {
+  color: var(--color-info);
+  margin: 0 0 0 1.25em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.github {
+  grid-area: github;
+  place-self: end start;
+  display: block;
+}
+
+.demos {
+  text-align: center;
+  grid-area: demos;
+  align-self: end;
+  display: block;
+  position: relative;
+}
+
+.demo {
+  margin: 0 0 0 .15em;
+}
+
+.demo:hover, .demo:focus {
+  opacity: .5;
+}
+
+.demo span {
+  white-space: nowrap;
+  text-transform: lowercase;
+  pointer-events: none;
+}
+
+.demo span:before {
+  content: "#";
+}
+
+a.demo--current {
+  pointer-events: none;
+}
+
+.codrops-links {
+  text-align: center;
+  white-space: nowrap;
+  justify-content: center;
+  margin: 0 1em 0 0;
+  display: flex;
+  position: relative;
+}
+
+.codrops-icon {
+  margin: .15em;
+  padding: .25em;
+  display: inline-block;
+}
+
+.scene {
+  pointer-events: none;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (width >= 55em) {
+  .demos {
+    justify-self: end;
+    display: flex;
+  }
+
+  .demo {
+    background: var(--color-link);
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    margin: 0 4px;
+    display: block;
+  }
+
+  a.demo--current {
+    background: var(--color-link-hover);
+  }
+
+  .demo span {
+    margin: 0 1em 0 0;
+    line-height: 1;
+    display: none;
+    position: absolute;
+    right: 100%;
+  }
+
+  .demo--current span {
+    display: block;
+  }
+}
+
+@media screen and (width <= 55em) {
+  .message {
+    display: block;
+  }
+
+  .content--fixed {
+    z-index: 1000;
+    padding: .85em;
+    display: block;
+    position: relative;
+  }
+
+  .codrops-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .codrops-header__title {
+    text-align: center;
+    padding-bottom: .25em;
+    font-weight: bold;
+  }
+
+  .github {
+    margin: 1em auto;
+    display: block;
+  }
+
+  .codrops-links {
+    margin: 0;
+  }
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+  display: block;
+}
+
+audio, canvas, video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  height: 0;
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+a:focus {
+  outline: thin dotted;
+}
+
+a:active, a:hover {
+  outline: 0;
+}
+
+h1 {
+  margin: .67em 0;
+  font-size: 2em;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+dfn {
+  font-style: italic;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+mark {
+  color: #000;
+  background: #ff0;
+}
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+}
+
+small {
+  font-size: 80%;
+}
+
+sub, sup {
+  vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+
+sup {
+  top: -.5em;
+}
+
+sub {
+  bottom: -.25em;
+}
+
+img {
+  border: 0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 0;
+}
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+button, input, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button, input {
+  line-height: normal;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button[disabled], html input[disabled] {
+  cursor: default;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  vertical-align: top;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.scene-nav {
+  z-index: 10;
+  color: var(--color-nav);
+  background: none;
+  border: 0;
+  padding: 1.5em;
+  font-size: 1.15em;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.scene-nav:focus {
+  outline: none;
+}
+
+.scene-nav--prev {
+  left: 0;
+}
+
+.slide-wrapper {
+  display: none;
+}
+
+.icon--arrow-nav-next {
+  transform: rotate(-180deg);
+}
+
+header {
+  z-index: 20;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  position: absolute;
+}
+
+.header__logo {
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  display: flex;
+}
+
+.header__items {
+  width: 60%;
+  height: 100%;
+}
+
+.header__hamburger {
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  display: flex;
+}
+
+.text__wrapper {
+  z-index: 10;
+  flex-direction: column;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+}
+
+.progress__bar span {
+  background: #f5f5f5;
+  width: 2px;
+  height: 100%;
+  display: block;
+}
+
+.title__wrapper .title__1 {
+  z-index: 10;
+  color: #f5f5f5;
+  font-family: george;
+  font-size: 300px;
+  display: block;
+}
+
+.title__description {
+  z-index: 10;
+}
+
+.arrow {
+  cursor: pointer;
+  z-index: 20;
+  mix-blend-mode: exclusion;
+  width: 100px;
+  height: 150px;
+  transition: transform .1s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%)translateY(-50%);
+}
+
+.arrow-top, .arrow-bottom {
+  background-color: #ffffff42;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+}
+
+.arrow-top:after, .arrow-bottom:after {
+  content: "";
+  background-color: #fff;
+  height: 100%;
+  transition: all .15s;
+  position: absolute;
+  top: 0;
+}
+
+.arrow-top {
+  transform-origin: 100% 100%;
+  transform: rotate(45deg);
+}
+
+.arrow-top:after {
+  transition-delay: 0s;
+  left: 100%;
+  right: 0;
+}
+
+.arrow-bottom {
+  transform-origin: 100% 0;
+  transform: rotate(-45deg);
+}
+
+.arrow-bottom:after {
+  transition-delay: .15s;
+  left: 0;
+  right: 100%;
+}
+
+.arrow:hover .arrow-top:after {
+  transition-delay: .15s;
+  left: 0;
+}
+
+.arrow:hover .arrow-bottom:after {
+  transition-delay: 0s;
+  right: 0;
+}
+
+.arrow:active {
+  transform: translateX(-50%)translateY(-50%)scale(.9);
+}
+
+/*# sourceMappingURL=index.da93f014.css.map */

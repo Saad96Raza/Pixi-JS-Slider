@@ -1,0 +1,1 @@
+{"mappings":"AAGA,MAAM;IACF,aAAa,CAIb;AACJ;AAIA,IAAI","sources":["assets/js/app.js"],"sourcesContent":["\r\n\r\n\r\nclass App{\r\n    constructor(){\r\n\r\n     \r\n\r\n    }\r\n}\r\n\r\n\r\n\r\nnew App()"],"names":[],"version":3,"file":"index.fbb7b822.js.map","sourceRoot":"/__parcel_source_root/"}

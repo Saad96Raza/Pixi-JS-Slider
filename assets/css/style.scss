@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+@font-face {
+    font-family: 'george';
+    src: url('../Fonts/George\ X.otf') format("opentype");
+}
+
+
+@font-face {
+    font-family: 'sussie';
+    src: url('../Fonts/SuisseBPIntl-UltraLight.otf') format("opentype");
+}
+
+
+@import './demo.scss';
+@import './normalize.scss';
+@import './component.scss';
+@import './header.scss';
+@import './slide-content.scss';
+

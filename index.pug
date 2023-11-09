@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+   meta(charset="UTF-8")
+   meta(name="viewport" content="width=device-width,initial-scale=1")
+   meta(name="description" content="")
+   link(rel="stylesheet", href="./assets/css/style.scss")
+  
+  body
+    include ./partials/header.pug
+
+    .content
+     .text__wrapper
+         .title__wrapper  
+            span.title__1 Elevate
+                     
+     .slide-wrapper
+      .slide-item
+         img(src="./assets/images/3.png", alt="" class="slide-item__image")    
+      .slide-item
+         img(src="./assets/images/2.png", alt="" class="slide-item__image")
+      .slide-item
+         img(src="./assets/images/1.png", alt="" class="slide-item__image")
+
+  
+    .arrow.scene-nav.scene-nav--next(data-nav="next")
+     .arrow-top
+     .arrow-bottom
+      
+        
+  
+  script(src="./assets/js/app.js" type="module")
+
